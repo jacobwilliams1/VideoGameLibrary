@@ -8,11 +8,16 @@ import java.util.Calendar;
 
 public class Library {
 
+    private final Home home;
     private ArrayList<Game> gamesLibrary = new ArrayList();
 
     private ArrayList<Game> checkedOutGames = new ArrayList();
 
     private DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+
+    public Library(Home home) {
+        this.home = home;
+    }
 
 
     public void addGame(Game game) {
@@ -40,7 +45,6 @@ public class Library {
             Calendar calobj = Calendar.getInstance();
             String currentDate = df.format(calobj.getTime());
             String dueDate = game.getDueDate();
-            System.out.println(df.parse(currentDate).before(df.parse(dueDate)));
             if (df.parse(currentDate).before(df.parse(dueDate))){
                 System.out.println("You turned the book in on time thanks!");
             }else {
@@ -58,7 +62,6 @@ public class Library {
             System.out.println(aGamesLibrary);
         }
         System.out.println("\n");
-        Home home = new Home();
         home.init();
     }
     public void listGamesCheckedOut(){
@@ -66,7 +69,6 @@ public class Library {
             System.out.println(aCheckedOutGames);
         }
         System.out.println("\n");
-        Home home = new Home();
         home.init();
     }
 

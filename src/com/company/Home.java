@@ -4,15 +4,17 @@ import java.util.Scanner;
 
 public class Home {
 
-    private Scanner scanner;
+    private Scanner scannerLn;
+    private Scanner scannerInt;
 
-    private Library library = new Library();
+    private Library library = new Library(this);
 
     private Boolean isValid;
 
 
     public void init() {
-        scanner = new Scanner(System.in);
+        scannerLn = new Scanner(System.in);
+        scannerInt = new Scanner(System.in);
         isValid = false;
         startMenu();
 
@@ -30,7 +32,7 @@ public class Home {
                             "6: Check in a game\n" +
                             "7: Close the program"
             );
-            switch (scanner.nextLine()) {
+            switch (scannerLn.nextLine()) {
                 case "1":
                     addGame();
                     isValid = true;
@@ -71,7 +73,7 @@ public class Home {
                 "You have chosen to check in a game from your library.\n" +
                         "Here is a list of games checked out type the number of the one you would like to  check in?");
         library.listGamesForCheckingIn();
-        int gameIndex = scanner.nextInt();
+        int gameIndex = scannerInt.nextInt();
         library.checkinGame(gameIndex);
         init();
     }
@@ -79,7 +81,7 @@ public class Home {
         System.out.println(
                 "You have chosen to add a game to your library.\n" +
                         "What is the title of your  game?");
-        String gameTitle = scanner.nextLine();
+        String gameTitle = scannerLn.nextLine();
         Game game = new Game(gameTitle);
         System.out.print("You set the game title to " + game.getTitle());
         library.addGame(game);
@@ -90,7 +92,7 @@ public class Home {
                 "You have chosen to checkout a game from your library.\n" +
                         "Here is a list of games type the  number of the one you would like to checkout?");
         library.listGamesForRemoving();
-        int gameIndex = scanner.nextInt();
+        int gameIndex = scannerInt.nextInt();
         library.checkoutGame(gameIndex);
         init();
     }
@@ -99,7 +101,7 @@ public class Home {
                 "You have chosen to remove  a game from your library.\n" +
                         "Here is a list of games type the number of the one you would like to remove?");
         library.listGamesForRemoving();
-        int gameIndex = scanner.nextInt();
+        int gameIndex = scannerInt.nextInt();
         library.removeGame(gameIndex);
         init();
     }
