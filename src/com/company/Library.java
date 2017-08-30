@@ -8,8 +8,6 @@ import java.util.Calendar;
 
 public class Library {
 
-    private static Library INSTANCE;
-
     private ArrayList<Game> gamesLibrary = new ArrayList();
 
     private ArrayList<Game> checkedOutGames = new ArrayList();
@@ -60,7 +58,7 @@ public class Library {
             System.out.println(aGamesLibrary);
         }
         System.out.println("\n");
-        Home home = Home.getHome();
+        Home home = new Home();
         home.init();
     }
     public void listGamesCheckedOut(){
@@ -68,7 +66,7 @@ public class Library {
             System.out.println(aCheckedOutGames);
         }
         System.out.println("\n");
-        Home home = Home.getHome();
+        Home home = new Home();
         home.init();
     }
 
@@ -84,14 +82,4 @@ public class Library {
             System.out.println(String.valueOf(index++)+": " + aCheckedOutGames);
         }
     }
-
-
-    public static Library getLibrary() {
-        if (INSTANCE == null) {
-            INSTANCE = new Library();
-        }
-        return INSTANCE;
-    }
-
-
 }
